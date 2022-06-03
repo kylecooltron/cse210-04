@@ -48,14 +48,6 @@ class Director:
         velocity = self._keyboard_service.get_direction()
         robot.set_velocity(velocity)
 
-        # get gravity velocity to apply to meteoroids
-        gravity_velocity = self._gravity.get_gravity_velocity()
-        # get meteoroids group
-        meteoroids = cast.get_actors("meteoroids")
-        # apply gravity velocity to all meteoroids
-        for meteoroid in meteoroids:
-            meteoroid.set_velocity(gravity_velocity)
-
     def _do_updates(self, cast):
         """Updates the robot's position and resolves any collisions with meteoroids.
 
@@ -73,17 +65,25 @@ class Director:
 
         for meteoroid in meteoroids:
 
+            # get gravity velocity to apply to meteoroids
+            gravity_velocity = self._gravity.get_gravity_velocity()
+            meteoroid.set_velocity(gravity_velocity)
             # apply gravity to all meteoroids to move them downward
             meteoroid.move_next(max_x, max_y*2)
 
+            #
             if meteoroid.get_position().get_y() > max_y:
                 cast.remove_actor("meteoroids", meteoroid)
 
             # check for collision with robot
             if robot.get_position().equals(meteoroid.get_position()):
                 # remove the meteoroid
+
+                # check the meteoroids _get_type and then apply score accordingly
+
                 # apply new score
-                banner.set_text(meteoroid.get_type())
+                banner.set_text("score: 0")
+
                 # remove that meteoroid
                 cast.remove_actor("meteoroids", meteoroid)
 
