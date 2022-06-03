@@ -44,3 +44,19 @@ Kyle Coulon (kylejcoulon@gmail.com)
 
 * # TODO: Add your name and email here ^
 ```
+
+DESIGN DOCUMENT:
+Most classes are unchanged versions from the RFK source
+
+New Classes:
+Meteoroid(Actor) - Meteoroids are either "rocks"s or "gem"s and keep track of their type
+Meteormaker - Will randomly make a certain number of meteoroids at the top of the screen
+Gravity - Returns a velocity vector that will be applied to all meteors
+
+We are planning on changing the main class to not create artifacts on startup,
+instead we will have something in the do_updates loop that will randomly have meteormaker create meteors
+We will change starting position of robot
+We will remove code for moving robot up and down
+
+Rachel: will be handling the code for keeping track of score
+Kyle: will Make the meteoroid and meteormaker classes
