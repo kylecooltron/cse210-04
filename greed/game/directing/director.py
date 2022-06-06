@@ -58,7 +58,6 @@ class Director:
         robot = cast.get_first_actor("robots")
         meteoroids = cast.get_actors("meteoroids")
 
-        banner.set_text("")
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
@@ -81,8 +80,8 @@ class Director:
 
                 # check the meteoroids _get_type and then apply score accordingly
 
-                # apply new score
-                banner.set_text("score: 0")
+                # display new score
+                banner.set_text("score:")
 
                 # remove that meteoroid
                 cast.remove_actor("meteoroids", meteoroid)

@@ -31,10 +31,10 @@ def main():
 
     # create the banner
     banner = Actor()
-    banner.set_text("")
+    banner.set_text("Collect Gems * to earn points!")
     banner.set_font_size(FONT_SIZE)
     banner.set_color(WHITE)
-    banner.set_position(Point(CELL_SIZE, 0))
+    banner.set_position(Point(CELL_SIZE, CELL_SIZE))
     cast.add_actor("banners", banner)
 
     # create the robot
