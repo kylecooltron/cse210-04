@@ -41,6 +41,7 @@ root (project root folder)
 ## Authors
 ---
 Kyle Coulon (kylejcoulon@gmail.com)
+Rachel Knight (kni21003@byui.edu)
 
 * # TODO: Add your name and email here ^
 ```
