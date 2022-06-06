@@ -53,7 +53,7 @@ class Meteormaker:
         color = Color(r, g, b)
 
         meteoroid = Meteoroid()
-        type = random.choice([["rock", "☐"], ["gem", "*"]])
+        type = random.choice([["rock", "0"], ["gem", "*"]])
         meteoroid.set_type(type[0])
         meteoroid.set_text(type[1])
         meteoroid.set_font_size(self._font_size)
