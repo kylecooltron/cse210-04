@@ -79,9 +79,13 @@ class Director:
                 # remove the meteoroid
 
                 # check the meteoroids _get_type and then apply score accordingly
-
+                
+                score = self._score._get_type = 0
+                score.set_score(score) 
+            
                 # display new score
-                banner.set_text("score:")
+                banner.set_text("Score: {score}")
+                print(score)
 
                 # remove that meteoroid
                 cast.remove_actor("meteoroids", meteoroid)
