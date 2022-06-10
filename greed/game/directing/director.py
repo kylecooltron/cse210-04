@@ -1,4 +1,5 @@
 import random
+from tkinter.tix import Meter
 
 
 class Director:
@@ -12,7 +13,7 @@ class Director:
         _gravity (Gravity): For controlling gravity rate and calculating gravity velocities
     """
 
-    def __init__(self, keyboard_service, video_service, gravity, meteormaker):
+    def __init__(self, keyboard_service, video_service, gravity, meteormaker, score):
         """Constructs a new Director using the specified keyboard and video services.
 
         Args:
@@ -24,6 +25,7 @@ class Director:
         self._video_service = video_service
         self._gravity = gravity
         self._meteormaker = meteormaker
+        self._score = score
 
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -58,6 +60,7 @@ class Director:
         robot = cast.get_first_actor("robots")
         meteoroids = cast.get_actors("meteoroids")
 
+
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
@@ -80,12 +83,14 @@ class Director:
 
                 # check the meteoroids _get_type and then apply score accordingly
                 
-                score = self._score._get_type = 0
-                score.set_score(score) 
+                if meteoroid.get_type(score) == "rock":
+                    score = 0
+                elif meteoroid.get_type(score) == "gem":
+                    score += 1    
             
                 # display new score
                 banner.set_text("Score: {score}")
-                print(score)
+                
 
                 # remove that meteoroid
                 cast.remove_actor("meteoroids", meteoroid)
