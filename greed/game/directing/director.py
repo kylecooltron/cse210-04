@@ -13,7 +13,7 @@ class Director:
         _gravity (Gravity): For controlling gravity rate and calculating gravity velocities
     """
 
-    def __init__(self, keyboard_service, video_service, gravity, meteormaker, score):
+    def __init__(self, keyboard_service, video_service, gravity, meteormaker):
         """Constructs a new Director using the specified keyboard and video services.
 
         Args:
@@ -25,7 +25,7 @@ class Director:
         self._video_service = video_service
         self._gravity = gravity
         self._meteormaker = meteormaker
-        self._score = score
+        self._score = 0
 
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -82,14 +82,14 @@ class Director:
                 # remove the meteoroid
 
                 # check the meteoroids _get_type and then apply score accordingly
-                
-                if meteoroid.get_type(score) == "rock":
-                    score = 0
-                elif meteoroid.get_type(score) == "gem":
-                    score += 1    
+            
+                if meteoroid.get_type() == "rock":
+                    self._score -= 1
+                elif meteoroid.get_type() == "gem":
+                    self._score += 1    
             
                 # display new score
-                banner.set_text("Score: {score}")
+                banner.set_text(f"Score: {self._score}")
                 
 
                 # remove that meteoroid
