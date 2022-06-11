@@ -1,5 +1,8 @@
 import random
 from tkinter.tix import Meter
+from game.shared.color import Color
+WHITE = Color(255, 255, 255)
+RED = Color(255, 0, 0)
 
 
 class Director:
@@ -60,7 +63,6 @@ class Director:
         robot = cast.get_first_actor("robots")
         meteoroids = cast.get_actors("meteoroids")
 
-
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
@@ -82,15 +84,20 @@ class Director:
                 # remove the meteoroid
 
                 # check the meteoroids _get_type and then apply score accordingly
-            
+
                 if meteoroid.get_type() == "rock":
                     self._score -= 1
+
                 elif meteoroid.get_type() == "gem":
-                    self._score += 1    
-            
+                    self._score += 1
+
+                if self._score >= 0:
+                    banner.set_color(WHITE)
+                else:
+                    banner.set_color(RED)
+
                 # display new score
                 banner.set_text(f"Score: {self._score}")
-                
 
                 # remove that meteoroid
                 cast.remove_actor("meteoroids", meteoroid)
